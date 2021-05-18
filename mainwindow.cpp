@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //-------------------------------------------------------------------------
     openCl_init();
     //-------------------------------------------------------------------------
+//    dev_num = 0;
     openCl_calc_midle();
     //-------------------------------------------------------------------------
     cpu_calc_midle();
@@ -284,7 +285,8 @@ void MainWindow::openCl_calc_midle(void)
     work_size = work_sizes[dev_num];//64;            // NDRange должен быть кратен размеру work-group
     //-------------------------------------------------------------------------
     context = clCreateContext(NULL, 1, &work_dev_id, NULL, NULL, &status);
-    command_queue = clCreateCommandQueueWithProperties(context, work_dev_id, NULL, &status);
+//    command_queue = clCreateCommandQueueWithProperties(context, work_dev_id, NULL, &status);
+    command_queue = clCreateCommandQueue(context, work_dev_id, 0, &status);
     //-------------------------------------------------------------------------
     a_mem_obj = clCreateBuffer(context, CL_MEM_READ_ONLY,  arr_size * sizeof(cl_int), NULL, &status);
     c_mem_obj = clCreateBuffer(context, CL_MEM_WRITE_ONLY, arr_size * sizeof(cl_int), NULL, &status);
@@ -431,7 +433,8 @@ void MainWindow::openCl_calc_float_midle(void)
     work_size = work_sizes[dev_num];//64;            // NDRange должен быть кратен размеру work-group
     //-------------------------------------------------------------------------
     context = clCreateContext(NULL, 1, &work_dev_id, NULL, NULL, &status);
-    command_queue = clCreateCommandQueueWithProperties(context, work_dev_id, NULL, &status);
+//    command_queue = clCreateCommandQueueWithProperties(context, work_dev_id, NULL, &status);
+    command_queue = clCreateCommandQueue(context, work_dev_id, 0, &status);
     //-------------------------------------------------------------------------
     a_mem_obj = clCreateBuffer(context, CL_MEM_READ_ONLY,  arr_size * sizeof(cl_float), NULL, &status);
     c_mem_obj = clCreateBuffer(context, CL_MEM_WRITE_ONLY, arr_size * sizeof(cl_float), NULL, &status);
@@ -592,7 +595,8 @@ void MainWindow::openCl_calc_yoz(void)
     work_size = work_sizes[dev_num];//64;            // NDRange должен быть кратен размеру work-group
     //-------------------------------------------------------------------------
     context = clCreateContext(NULL, 1, &work_dev_id, NULL, NULL, &status);
-    command_queue = clCreateCommandQueueWithProperties(context, work_dev_id, NULL, &status);
+//    command_queue = clCreateCommandQueueWithProperties(context, work_dev_id, NULL, &status);
+    command_queue = clCreateCommandQueue(context, work_dev_id, 0, &status);
     //-------------------------------------------------------------------------
     x_mem_obj   = clCreateBuffer(context, CL_MEM_READ_ONLY,  arr_size * sizeof(cl_float), NULL, &status);
     y_mem_obj   = clCreateBuffer(context, CL_MEM_READ_ONLY,  arr_size * sizeof(cl_float), NULL, &status);
@@ -796,7 +800,8 @@ void MainWindow::openCl_calc_xoz(void)
     work_size = work_sizes[dev_num];//64;            // NDRange должен быть кратен размеру work-group
     //-------------------------------------------------------------------------
     context = clCreateContext(NULL, 1, &work_dev_id, NULL, NULL, &status);
-    command_queue = clCreateCommandQueueWithProperties(context, work_dev_id, NULL, &status);
+//    command_queue = clCreateCommandQueueWithProperties(context, work_dev_id, NULL, &status);
+    command_queue = clCreateCommandQueue(context, work_dev_id, 0, &status);
     //-------------------------------------------------------------------------
     x_mem_obj   = clCreateBuffer(context, CL_MEM_READ_ONLY,  arr_size * sizeof(cl_float), NULL, &status);
     y_mem_obj   = clCreateBuffer(context, CL_MEM_READ_ONLY,  arr_size * sizeof(cl_float), NULL, &status);

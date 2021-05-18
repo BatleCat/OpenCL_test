@@ -16,10 +16,15 @@ RESOURCES += \
 
 RC_ICONS = tng.ico
 
-OPEN_CL_SDK = "C:/Program Files (x86)/AMD APP SDK/3.0"
-OPEN_CL_SDK_INCLUDE = $${OPEN_CL_SDK}/include
-OPEN_CL_SDK_LIB =     $${OPEN_CL_SDK}/lib/x86_64
-OPEN_CL_SDK_BIN =     $${OPEN_CL_SDK}/bin/x86_64
+#OPEN_CL_SDK = "C:/Program Files (x86)/AMD APP SDK/3.0"
+#OPEN_CL_SDK_INCLUDE = $${OPEN_CL_SDK}/include
+#OPEN_CL_SDK_LIB =     $${OPEN_CL_SDK}/lib/x86_64
+#OPEN_CL_SDK_BIN =     $${OPEN_CL_SDK}/bin/x86_64
+
+OPEN_CL_SDK = "D:/Andrey/2021/OpenCL/oclMultiThreads\NVIDIA GPU Computing SDK\OpenCL\common"
+OPEN_CL_SDK_INCLUDE = $${OPEN_CL_SDK}/inc
+OPEN_CL_SDK_LIB =     $${OPEN_CL_SDK}/lib/x64
+OPEN_CL_SDK_BIN =     $${OPEN_CL_SDK}/lib/x64
 INCLUDEPATH += $${OPEN_CL_SDK_INCLUDE}
 DEPENDPATH  += $${OPEN_CL_SDK_INCLUDE}
 
