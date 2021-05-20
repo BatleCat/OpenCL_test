@@ -158,13 +158,20 @@ void MainWindow::openCl_init(void)
         for (i = 0; i < num_platforms; i++)
         {
             status = clGetDeviceIDs(platform_id[i], CL_DEVICE_TYPE_ALL, 0, NULL, &num_devices);
-            device_id = new cl_device_id[num_devices];
-            status = clGetDeviceIDs(platform_id[i], CL_DEVICE_TYPE_ALL, num_devices, device_id, NULL);
+//            device_id = new cl_device_id[num_devices];
+//            status = clGetDeviceIDs(platform_id[i], CL_DEVICE_TYPE_ALL, num_devices, device_id, NULL);
             ui->textBrowser->append(QString::fromUtf8("На платформе %1 обнаружено %2 OpenCL устройств").arg(i + 1).arg(num_devices));
         }
     }
 
-    work_sizes = new size_t[num_devices];
+    {
+        uint i = 1;// платформа 2
+//        uint i = 0;// платформа 1
+        status = clGetDeviceIDs(platform_id[i], CL_DEVICE_TYPE_ALL, 0, NULL, &num_devices);
+        device_id = new cl_device_id[num_devices];
+        status = clGetDeviceIDs(platform_id[i], CL_DEVICE_TYPE_ALL, num_devices, device_id, NULL);
+
+        work_sizes = new size_t[num_devices];
     //-------------------------------------------------------------------------
     // OpenCL Device Info
     //-------------------------------------------------------------------------
@@ -176,8 +183,6 @@ void MainWindow::openCl_init(void)
     //      CL_DEVICE_MAX_WORK_ITEM_SIZES
     //      CL_DEVICE_MAX_CLOCK_FREQUENCY
     //-------------------------------------------------------------------------
-    {
-        uint i = 0;
         uint j;
 //        for (i = 0; i < num_platforms; i++)
         {
@@ -285,8 +290,8 @@ void MainWindow::openCl_calc_midle(void)
     work_size = work_sizes[dev_num];//64;            // NDRange должен быть кратен размеру work-group
     //-------------------------------------------------------------------------
     context = clCreateContext(NULL, 1, &work_dev_id, NULL, NULL, &status);
-//    command_queue = clCreateCommandQueueWithProperties(context, work_dev_id, NULL, &status);
-    command_queue = clCreateCommandQueue(context, work_dev_id, 0, &status);
+    command_queue = clCreateCommandQueueWithProperties(context, work_dev_id, NULL, &status);
+//    command_queue = clCreateCommandQueue(context, work_dev_id, 0, &status);
     //-------------------------------------------------------------------------
     a_mem_obj = clCreateBuffer(context, CL_MEM_READ_ONLY,  arr_size * sizeof(cl_int), NULL, &status);
     c_mem_obj = clCreateBuffer(context, CL_MEM_WRITE_ONLY, arr_size * sizeof(cl_int), NULL, &status);
@@ -433,8 +438,8 @@ void MainWindow::openCl_calc_float_midle(void)
     work_size = work_sizes[dev_num];//64;            // NDRange должен быть кратен размеру work-group
     //-------------------------------------------------------------------------
     context = clCreateContext(NULL, 1, &work_dev_id, NULL, NULL, &status);
-//    command_queue = clCreateCommandQueueWithProperties(context, work_dev_id, NULL, &status);
-    command_queue = clCreateCommandQueue(context, work_dev_id, 0, &status);
+    command_queue = clCreateCommandQueueWithProperties(context, work_dev_id, NULL, &status);
+//    command_queue = clCreateCommandQueue(context, work_dev_id, 0, &status);
     //-------------------------------------------------------------------------
     a_mem_obj = clCreateBuffer(context, CL_MEM_READ_ONLY,  arr_size * sizeof(cl_float), NULL, &status);
     c_mem_obj = clCreateBuffer(context, CL_MEM_WRITE_ONLY, arr_size * sizeof(cl_float), NULL, &status);
@@ -595,8 +600,8 @@ void MainWindow::openCl_calc_yoz(void)
     work_size = work_sizes[dev_num];//64;            // NDRange должен быть кратен размеру work-group
     //-------------------------------------------------------------------------
     context = clCreateContext(NULL, 1, &work_dev_id, NULL, NULL, &status);
-//    command_queue = clCreateCommandQueueWithProperties(context, work_dev_id, NULL, &status);
-    command_queue = clCreateCommandQueue(context, work_dev_id, 0, &status);
+    command_queue = clCreateCommandQueueWithProperties(context, work_dev_id, NULL, &status);
+//    command_queue = clCreateCommandQueue(context, work_dev_id, 0, &status);
     //-------------------------------------------------------------------------
     x_mem_obj   = clCreateBuffer(context, CL_MEM_READ_ONLY,  arr_size * sizeof(cl_float), NULL, &status);
     y_mem_obj   = clCreateBuffer(context, CL_MEM_READ_ONLY,  arr_size * sizeof(cl_float), NULL, &status);
@@ -800,8 +805,8 @@ void MainWindow::openCl_calc_xoz(void)
     work_size = work_sizes[dev_num];//64;            // NDRange должен быть кратен размеру work-group
     //-------------------------------------------------------------------------
     context = clCreateContext(NULL, 1, &work_dev_id, NULL, NULL, &status);
-//    command_queue = clCreateCommandQueueWithProperties(context, work_dev_id, NULL, &status);
-    command_queue = clCreateCommandQueue(context, work_dev_id, 0, &status);
+    command_queue = clCreateCommandQueueWithProperties(context, work_dev_id, NULL, &status);
+//    command_queue = clCreateCommandQueue(context, work_dev_id, 0, &status);
     //-------------------------------------------------------------------------
     x_mem_obj   = clCreateBuffer(context, CL_MEM_READ_ONLY,  arr_size * sizeof(cl_float), NULL, &status);
     y_mem_obj   = clCreateBuffer(context, CL_MEM_READ_ONLY,  arr_size * sizeof(cl_float), NULL, &status);

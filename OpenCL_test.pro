@@ -21,8 +21,8 @@ RC_ICONS = tng.ico
 #OPEN_CL_SDK_LIB =     $${OPEN_CL_SDK}/lib/x86_64
 #OPEN_CL_SDK_BIN =     $${OPEN_CL_SDK}/bin/x86_64
 
-OPEN_CL_SDK = "D:/Andrey/2021/OpenCL/oclMultiThreads\NVIDIA GPU Computing SDK\OpenCL\common"
-OPEN_CL_SDK_INCLUDE = $${OPEN_CL_SDK}/inc
+OPEN_CL_SDK = "D:/Andrey/2021/OpenCL/NVIDIA GPU Computing SDK\OpenCL"
+OPEN_CL_SDK_INCLUDE = $${OPEN_CL_SDK}/include
 OPEN_CL_SDK_LIB =     $${OPEN_CL_SDK}/lib/x64
 OPEN_CL_SDK_BIN =     $${OPEN_CL_SDK}/lib/x64
 INCLUDEPATH += $${OPEN_CL_SDK_INCLUDE}
@@ -48,9 +48,9 @@ FORMS    += mainwindow.ui
 QMAKE_CXXFLAGS += -Ofast -m64 -std=c++11 -minline-all-stringops -mmmx -msse -msse2 -msse3 -mssse3 -msse4.1 -msse4.2
 
 #QMAKE_CXXFLAGS += -Ofast -march=i686 -std=c++11 -minline-all-stringops
-#QMAKE_CXXFLAGS_DEBUG += -pg
+QMAKE_CXXFLAGS_DEBUG += -pg
 #QMAKE_LFLAGS_DEBUG += -pg
-#QMAKE_LFLAGS += -pg
+QMAKE_LFLAGS += -pg
 #QMAKE_LFLAGS_DEBUG += -pg -LC:\\mingw491\\mingw32\\lib
 win32{
 LIBS    += "-L$${OPEN_CL_SDK_LIB}"\
